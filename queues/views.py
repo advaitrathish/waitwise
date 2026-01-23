@@ -1,18 +1,36 @@
 from django.shortcuts import render
 
-# Create your views here.
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .models import Shop
-from .serializers import shopserializer
+from rest_framework import status
+from .models import Shop, TimeSlot, CrowdRecord
+from .serializers import ShopSerializer, TimeSlotSerializer, CrowdRecordSerializer
 
-@api_view(['GET'])
-def Shop_list(request):
-    Shops=Shop.objects.all()
-    serializer=shopserializer(Shops,many=True)
-    return Response(serializer.data)
+class ShopListView(APIView):
+    def get(self, request):
+        shops = Shop.objects.all()
+        serializer = ShopSerializer(shops, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class TimeSlotListView(APIView):
+    def get(self, request, shop_id):
+        timeslots = TimeSlot.objects.filter(shop__id=shop_id)
+        serializer = TimeSlotSerializer(timeslots, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class CrowdRecordListView(APIView):
+    def get(self, request, shop_id):
+        crowd_records = CrowdRecord.objects.filter(shop__id=shop_id)
+        serializer = CrowdRecordSerializer(crowd_records, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class ProtectedTestView(APIView):
+    permission_classes = [IsAuthenticated]
 
-
-def api_test(request):
-    return HttpResponse("API working fine!")
+    def get(self, request):
+        return Response({
+            "message": "JWT Working", "user": request.user.username
+        })
