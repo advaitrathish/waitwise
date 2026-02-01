@@ -3,11 +3,16 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 32px;
+
+  padding: 24px 40px;
+  max-width: 1200px;
+  margin: 0 auto;frontend: header layout polish and responsive tweaks
 }
 
-.header h2 {
-  font-size: 24px;
+.header h1 {
+  font-size: 1.8rem;
   font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .header button {
@@ -22,4 +27,35 @@
 
 .header button:hover {
   background: rgba(255, 255, 255, 0.25);
+}
+
+.login-btn {
+  padding: 10px 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 20px;
+  }
+
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  .login-btn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
 }

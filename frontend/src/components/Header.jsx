@@ -4,7 +4,7 @@ function Header() {
   return (
     <div className="header">
       <h2>WaitWise</h2>
-      <button>Login</button>
+      <button className="login-btn">Login</button>
     </div>
   );
 }
