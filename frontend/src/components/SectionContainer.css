@@ -1,0 +1,27 @@
+.section-container {
+  margin-top: 1.6rem;   /* ⬅ reduced from 2.2rem */
+  position: relative;
+}
+
+/* HEADER */
+.section-header {
+  margin-bottom: 0.5rem; /* tighter */
+}
+
+.section-header h2 {
+  font-size: 1.15rem;   /* slightly smaller = more premium */
+  font-weight: 500;
+  color: #f9fafb;
+}
+
+.section-header p {
+  margin-top: 0.25rem; /* tighter subtitle spacing */
+  font-size: 0.82rem;
+  color: #9ca3af;
+  max-width: 520px;
+}
+
+/* CONTENT */
+.section-content {
+  margin-top: 0.6rem;  /* cards pulled closer to heading */
+}

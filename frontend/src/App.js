@@ -1,6 +1,15 @@
+import WaveBackground from "./components/WaveBackground";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
-  return <Dashboard />;
+  return (
+    <>
+      <WaveBackground />
+      <div style={{ position: "relative", zIndex: 2 }}>
+        <Dashboard />
+      </div>
+    </>
+  );
 }
+
 export default App;

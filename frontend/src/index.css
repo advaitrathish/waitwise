@@ -1,32 +1,11 @@
-/* Global reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Dark background */
-body {
-  font-family: Arial, sans-serif;
-  color: #ffffff;
-
-  background: linear-gradient(
-    120deg,
-    #0000b8,
-    hsl(200, 93%, 42%),
-    #0000b8
-  );
-  background-size: 200% 200%;
-  animation: gradientMove 10s ease infinite;
-}
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+html, body {
+  background: #0b0f14;
+  color: #e5e7eb;
+  font-family: Inter, system-ui, sans-serif;
 }
