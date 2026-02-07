@@ -8,6 +8,13 @@ import WaveBackground from "../components/WaveBackground";
 import "./Dashboard.css";
 
 function Dashboard() {
+  const statsData = {
+    queues: 4,
+    timeSlots: 12,
+    shops: 8,
+  };
+
+
   return (
     <>
       <WaveBackground />
@@ -15,7 +22,7 @@ function Dashboard() {
       <HeroBlock />
 
       <div className="dashboard-container">
-        <StatsGrid />
+        <StatsGrid stats={statsData} />
 
         <SectionContainer
           title="Queue Insights"

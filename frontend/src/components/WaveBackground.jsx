@@ -15,7 +15,7 @@ const WaveBackground = () => {
       {/* Waves */}
       <svg
         className="wave-svg"
-        viewBox="0 0 1440 320"
+        viewBox="0 0 1440 420"
         preserveAspectRatio="none"
       >
         <path
