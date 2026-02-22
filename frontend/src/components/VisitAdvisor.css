@@ -145,3 +145,13 @@
   background-color: #0f172a;
   color: #e5e7eb;
 }
+
+@media (max-width: 768px) {
+  .visit-advisor-container {
+    grid-template-columns: 1fr;
+  }
+
+  .advisor-result {
+    margin-top: 1.5rem;
+  }
+}
