@@ -10,98 +10,99 @@ function VisitAdvisor() {
   const [groupSize, setGroupSize] = useState(1);
   const [hasChecked, setHasChecked] = useState(false);
 
-  // 🔍 Selected shop
   const selectedShop = useMemo(
     () => crowdData.find((s) => s.name === shopName),
     [shopName]
   );
 
-  // 👥 Current crowd + group
   const currentCrowd = useMemo(() => {
     if (!selectedShop) return groupSize;
-    const baseCrowd = selectedShop.slots[time] ?? 0;
-    return baseCrowd + groupSize;
+    const base = selectedShop.slots[time] ?? 0;
+    return base + groupSize;
   }, [selectedShop, time, groupSize]);
 
-  // 🎯 Crowd result
   const crowdStatus = useMemo(() => {
     if (!selectedShop) return { label: "Unknown", color: "#64748b" };
     return getCrowdStatus(currentCrowd, selectedShop.capacity);
   }, [currentCrowd, selectedShop]);
 
-  // ⭐ Best time suggestion
   const bestTimeSlot = useMemo(() => {
     if (!selectedShop) return null;
-
-    let bestTime = null;
-    let lowestRatio = Infinity;
+    let best = null;
+    let lowest = Infinity;
 
     Object.entries(selectedShop.slots).forEach(([slot, count]) => {
       const ratio = count / selectedShop.capacity;
-      if (ratio < lowestRatio) {
-        lowestRatio = ratio;
-        bestTime = slot;
+      if (ratio < lowest) {
+        lowest = ratio;
+        best = slot;
       }
     });
 
-    return bestTime;
+    return best;
   }, [selectedShop]);
 
   return (
     <div className="visit-advisor-container">
-      {/* LEFT: INPUTS */}
-      <div className="advisor-form">
+      {/* LEFT */}
+      <div className="advisor-form glass-card">
         <h2 className="advisor-title">Visit Advisor</h2>
 
-        {/* Date */}
-        <label>Date</label>
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
+        <div className="form-grid">
+          <div className="form-group">
+            <label>Date</label>
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
 
-        {/* Shop */}
-        <label>Ration Shop</label>
-        <select value={shopName} onChange={(e) => setShopName(e.target.value)}>
-          {crowdData.map((shop) => (
-            <option key={shop.name} value={shop.name}>
-              {shop.name}
-            </option>
-          ))}
-        </select>
+          <div className="form-group">
+            <label>Ration Shop</label>
+            <select
+              value={shopName}
+              onChange={(e) => setShopName(e.target.value)}
+            >
+              {crowdData.map((shop) => (
+                <option key={shop.name} value={shop.name}>
+                  {shop.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        {/* Time */}
-        <label>Time Slot</label>
-        <select value={time} onChange={(e) => setTime(e.target.value)}>
-          {selectedShop &&
-            Object.keys(selectedShop.slots).map((slot) => (
-              <option key={slot} value={slot}>
-                {slot}
-              </option>
-            ))}
-        </select>
+          <div className="form-group">
+            <label>Time Slot</label>
+            <select value={time} onChange={(e) => setTime(e.target.value)}>
+              {selectedShop &&
+                Object.keys(selectedShop.slots).map((slot) => (
+                  <option key={slot} value={slot}>
+                    {slot}
+                  </option>
+                ))}
+            </select>
+          </div>
 
-        {/* Group size */}
-        <label>Group Size</label>
-        <input
-          type="number"
-          min="1"
-          value={groupSize}
-          onChange={(e) => setGroupSize(Number(e.target.value))}
-        />
+          <div className="form-group">
+            <label>Group Size</label>
+            <input
+              type="number"
+              min="1"
+              value={groupSize}
+              onChange={(e) => setGroupSize(Number(e.target.value))}
+            />
+          </div>
+        </div>
 
-        <button
-          className="check-btn"
-          onClick={() => setHasChecked(true)}
-        >
+        <button className="check-btn" onClick={() => setHasChecked(true)}>
           Check Crowd Status
         </button>
       </div>
 
-      {/* RIGHT: RESULT PANEL */}
+      {/* RIGHT */}
       {hasChecked && (
-        <div className="advisor-result fade-in">
+        <div className={`advisor-result fade-in glass-card ${crowdStatus.label.toLowerCase()}`}>
           <h3 style={{ color: crowdStatus.color }}>
             {crowdStatus.label}
           </h3>

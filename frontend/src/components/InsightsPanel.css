@@ -1,0 +1,33 @@
+.insights-panel {
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 16px;
+}
+
+.insights-title {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.insight-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.value {
+  font-size: 1.05rem;
+  font-weight: 500;
+}

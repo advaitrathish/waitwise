@@ -8,21 +8,19 @@ import SectionContainer from "../components/SectionContainer";
 import InfoCard from "../components/InfoCard";
 import WaveBackground from "../components/WaveBackground";
 import VisitAdvisor from "../components/VisitAdvisor";
+import InsightsPanel from "../components/InsightsPanel";
 
 import "./Dashboard.css";
 
 function Dashboard() {
-  // ✅ 1. Loading state (TOP LEVEL)
   const [loading, setLoading] = useState(true);
 
-  // ✅ 2. Dashboard data (PURE object)
   const statsData = {
     queues: 4,
     timeSlots: 12,
     shops: 8,
   };
 
-  // ✅ 3. Simulated API delay
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -31,7 +29,6 @@ function Dashboard() {
     return () => clearTimeout(timer);
   }, []);
 
-  // ✅ 4. Render
   return (
     <>
       <WaveBackground />
@@ -46,25 +43,36 @@ function Dashboard() {
         )}
 
         <VisitAdvisor />
+        <InsightsPanel />
 
+        {/* 🔮 Future Modules Section */}
         <SectionContainer
-          title="Queue Insights"
-          subtitle="System-generated insights based on real-time demand patterns"
+          title="Future Intelligence Modules"
+          subtitle="Planned analytics capabilities for upcoming releases"
         >
           <div className="insights-grid">
             <InfoCard variant="plan">
-              <h3>Peak Hours</h3>
-              <p>Identify high-demand periods and traffic surges.</p>
+              <h3>Peak Hours Analytics</h3>
+              <p>
+                Advanced demand modeling to predict high-traffic periods
+                before congestion builds.
+              </p>
             </InfoCard>
 
             <InfoCard variant="plan highlight">
-              <h3>Average Wait Time</h3>
-              <p>Monitor service delays and optimize throughput.</p>
+              <h3>Average Wait Time Estimation</h3>
+              <p>
+                Machine-driven service delay forecasting to optimize queue
+                throughput.
+              </p>
             </InfoCard>
 
             <InfoCard variant="plan">
-              <h3>Anomaly Detection</h3>
-              <p>Detect unusual queue behavior and disruptions.</p>
+              <h3>Anomaly Detection Engine</h3>
+              <p>
+                Intelligent monitoring to detect irregular crowd patterns and
+                service disruptions.
+              </p>
             </InfoCard>
           </div>
         </SectionContainer>
